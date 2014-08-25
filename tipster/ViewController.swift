@@ -24,9 +24,17 @@ class ViewController: UIViewController {
 
   @IBOutlet var tipSegmentedControl: UISegmentedControl
 
+  let segmentIndexKey = "selectedSegmentIndex"
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+  }
+
+  override func  viewWillAppear(animated: Bool) {
+    var defaults = NSUserDefaults.standardUserDefaults()
+    let index = defaults.integerForKey(segmentIndexKey)
+    tipSegmentedControl.selectedSegmentIndex = index
     refreshValues()
   }
 
