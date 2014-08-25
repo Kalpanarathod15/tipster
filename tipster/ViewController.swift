@@ -10,9 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
                             
+  @IBOutlet var billAmountLabel: UILabel
+
+
+
+  @IBOutlet var tipLabel: UILabel
+
+  @IBOutlet var tipAmountLabel: UILabel
+  @IBOutlet var totalLabel: UILabel
+  @IBOutlet var totalAmountLabel: UILabel
+
+  @IBOutlet var billAmountTextField: UITextField
+
+  @IBOutlet var tipSegmentedControl: UISegmentedControl
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    refreshValues()
   }
 
   override func didReceiveMemoryWarning() {
@@ -21,5 +36,28 @@ class ViewController: UIViewController {
   }
 
 
+  @IBAction func onBillAmountEditingChanged(sender: AnyObject) {
+    refreshValues()
+  }
+
+  @IBAction func onSegmenterValueChanged(sender: AnyObject) {
+    refreshValues()
+  }
+
+  func refreshValues() {
+    let billAmount = Double((billAmountTextField.text as NSString).doubleValue)
+    var tipPct = 0.0
+    switch(tipSegmentedControl.selectedSegmentIndex) {
+    case 0: tipPct = 0.18
+    case 1: tipPct = 0.20
+    default: tipPct = 0.25
+    }
+
+    let tipAmount = billAmount * tipPct
+    let totalAmount = billAmount + tipAmount
+
+    tipAmountLabel.text = "$\(tipAmount)"
+    totalAmountLabel.text = "$\(totalAmount)"
+  }
 }
 
