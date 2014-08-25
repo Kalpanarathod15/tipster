@@ -31,7 +31,8 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
   }
 
-  override func  viewWillAppear(animated: Bool) {
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     var defaults = NSUserDefaults.standardUserDefaults()
     let index = defaults.integerForKey(segmentIndexKey)
     tipSegmentedControl.selectedSegmentIndex = index
