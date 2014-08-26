@@ -10,14 +10,15 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-  @IBOutlet var defaultTipSegmentedControl: UISegmentedControl
+
+  @IBOutlet var defaultTipSegmentedControl: UISegmentedControl?
 
   let segmentIndexKey = "selectedSegmentIndex"
   override func viewDidLoad() {
         super.viewDidLoad()
     var defaults = NSUserDefaults.standardUserDefaults()
     let index = defaults.integerForKey(segmentIndexKey)
-    defaultTipSegmentedControl.selectedSegmentIndex = index
+    defaultTipSegmentedControl!.selectedSegmentIndex = index
   }
 
   override func didReceiveMemoryWarning() {
@@ -27,7 +28,7 @@ class SettingsViewController: UIViewController {
 
   @IBAction func defaultTipValueChanged(sender: AnyObject) {
     var defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setInteger(defaultTipSegmentedControl.selectedSegmentIndex, forKey: segmentIndexKey)
+    defaults.setInteger(defaultTipSegmentedControl!.selectedSegmentIndex, forKey: segmentIndexKey)
     defaults.synchronize()
   }
 }
